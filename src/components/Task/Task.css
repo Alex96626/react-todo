@@ -1,0 +1,51 @@
+.task {
+    display: 
+    flex;
+    align-items: center;
+    gap: 17px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid #6c63ff;
+}
+
+.task__ckeckbox {
+    appearance: none;
+    position: absolute;
+}
+
+.task__status {
+    width: 26px;
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #6c63ff;
+    border-radius: 2px;
+
+    cursor: pointer;
+}
+
+.task__ckeckbox:checked + .task__status{
+    background-color: #6c63ff;
+}
+
+.task_checked  {
+    display: none;
+}
+
+.task__ckeckbox:checked + .task__status > .task_checked {
+    display: block;
+}
+
+.task__name {
+    font-size: 20px;
+
+    color: #fff;
+}
+
+.task__name__done {
+    text-decoration: line-through;
+}
