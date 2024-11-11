@@ -1,17 +1,21 @@
 import { FC } from 'react';
 import { Task } from '../Task/Task';
 
-type TaskListProps = {
-    tasks?: number[],
-}
+import type { TaskListProps } from '../../types/TaskListProps';
+
+import './TaskList.css';
 
 const TaskList: FC<TaskListProps> = ({tasks}) => {
-    console.log(tasks)
+    tasks?.map(i=> console.log(i.name))
+    
     return <>
+        <ul className="task__list">
         { 
             tasks?.map((task,index) => 
-            <Task key={index} taskName={task.toString()}></Task>)
+                <Task key={index} taskStatus={false}  taskName={task.name} />
+            )
         }
+        </ul>
     </>
 }
 

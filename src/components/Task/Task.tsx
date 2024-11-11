@@ -5,25 +5,27 @@ import { TaskControl } from "../TaskControl/TaskControl";
 
 type TaskProps = {
   taskName: string;
+  taskStatus: boolean;
 };
 
-const Task: FC<TaskProps> = ({ taskName }) => {
+const Task: FC<TaskProps> = ({ taskName, taskStatus }) => {
   const fieldId = useId();
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(taskStatus || false);
 
   function changeTaskStatus() {
     setStatus(!status);
   }
 
   return (
-    <div className="task">
+    <li className="task">
       <input
         type="checkbox"
         className="task__ckeckbox"
         name={fieldId}
         id={fieldId}
         onInput={changeTaskStatus}
-      ></input>
+        defaultChecked={status}
+      />
       <label className="task__status" htmlFor={fieldId}>
         <svg className="task_checked"
             xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +44,8 @@ const Task: FC<TaskProps> = ({ taskName }) => {
         </svg>
       </label>
       <span className={!status ? "task__name" : "task__name task__name__done"}>{taskName}</span>
-      <TaskControl></TaskControl>
-    </div>
+      <TaskControl />
+    </li>
   );
 };
 

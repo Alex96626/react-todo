@@ -1,13 +1,58 @@
-import { TaskList } from '../TaskList/TaskList';
-import './Board.css';
+import { useState } from "react";
+import { SearchTask } from "../SearchTask/SearchTask";
+import { TaskList } from "../TaskList/TaskList";
 
+import type { TaskListProps } from '../../types/TaskListProps';
+
+import type { SetStateAction } from "react";
+import "./Board.css";
 
 const Board = () => {
-    return (
-        <div className='board'>
-            <TaskList tasks={[1,4,5,8]}></TaskList>
-        </div>
-    )
-}
 
-export { Board }
+  type SearchParam = {
+    name: string,
+    type: string,
+  }[]
+   
+  const tasksList = [
+    {
+      name: 'task1',
+      type: 'test1'
+    },
+    {
+      name: 'task2',
+      type: 'test2'
+    },
+    {
+      name: 'task3',
+      type: 'test3'
+    },
+    {
+      name: 'task4',
+      type: 'test2'
+    },
+  ];
+
+  const [searchParams ,setSearchParams] = useState('');
+
+  const filteredTask = tasksList.filter(
+    ({name, type}) => 
+      name === searchParams || 
+      type === searchParams
+    );
+
+  const handlerSetSearchParam = (value: SetStateAction<string>) => {
+    setSearchParams(value)
+  }
+
+  return (
+    <>  
+        <div className="task__board">
+            <SearchTask  searchValue={handlerSetSearchParam} />
+            <TaskList tasks={filteredTask}/>
+        </div>
+    </>
+  );
+};
+
+export { Board };
