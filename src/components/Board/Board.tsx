@@ -2,8 +2,6 @@ import { useState } from "react";
 import { SearchTask } from "../SearchTask/SearchTask";
 import { TaskList } from "../TaskList/TaskList";
 
-import type { TaskListProps } from '../../types/TaskListProps';
-
 import type { SetStateAction } from "react";
 import "./Board.css";
 
@@ -39,7 +37,9 @@ const Board = () => {
     ({name, type}) => 
       name === searchParams || 
       type === searchParams
-    );
+  );
+  
+  
 
   const handlerSetSearchParam = (value: SetStateAction<string>) => {
     setSearchParams(value)
@@ -49,7 +49,7 @@ const Board = () => {
     <>  
         <div className="task__board">
             <SearchTask  searchValue={handlerSetSearchParam} />
-            <TaskList tasks={filteredTask}/>
+            <TaskList tasks={(filteredTask.length > 0) ? filteredTask : tasksList}/>
         </div>
     </>
   );

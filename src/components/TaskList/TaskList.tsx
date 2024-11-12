@@ -1,14 +1,26 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Task } from '../Task/Task';
 
 import type { TaskListProps } from '../../types/TaskListProps';
 
 import './TaskList.css';
+import { EmptyTaskList } from '../EmptyTaskList/EmptyTaskList';
 
 const TaskList: FC<TaskListProps> = ({tasks}) => {
-    tasks?.map(i=> console.log(i.name))
+
+    // const [taskListEmpty, settaskListEmpty] = useState(true);
+
+    // useEffect(() => {
+    //     if(!taskListEmpty) {
+    //         return;
+    //     }
+
+
+
+    // }, [taskListEmpty])
     
     return <>
+        <EmptyTaskList />
         <ul className="task__list">
         { 
             tasks?.map((task,index) => 
